@@ -43,16 +43,14 @@ public class find extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.find_yes_button:
-                getresult();
-                break;
-            case R.id.find_no_button:
-                Intent intent=new Intent(find.this,Library_function.class);
-                startActivity(intent);
-                break;
-            default:
-                break;
+        if(v.getId()==R.id.find_yes_button)
+        {
+            getresult();
+        }
+        else if(v.getId()==R.id.find_no_button)
+        {
+            Intent intent=new Intent(find.this,Library_function.class);
+            startActivity(intent);
         }
 
     }

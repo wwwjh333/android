@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewParent;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -42,16 +41,14 @@ public class Dialog_Activity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()){
-            case R.id.add_yes_button:
-                getResult();
-                break;
-            case R.id.add_no_button:
-                Intent intent=new Intent(Dialog_Activity.this,Library_function.class);
-                startActivity(intent);
-                break;
-            default:
-                break;
+        if(v.getId()==R.id.add_yes_button)
+        {
+            getResult();
+        }
+        else if(v.getId()==R.id.add_no_button)
+        {
+            Intent intent=new Intent(Dialog_Activity.this,Library_function.class);
+            startActivity(intent);
         }
     }
 
@@ -67,13 +64,5 @@ public class Dialog_Activity extends AppCompatActivity implements View.OnClickLi
         book=new Book(bookid,bookname,bookprice);//将书籍信息放到Book类中
         //调用书籍添加功能
         impl.addBook(book);
-
-
-
-
-
-
     }
-
-
 }

@@ -16,10 +16,6 @@ public interface UserDao {
      * @return  用户是否登录成功
      */
     public abstract boolean isloging(Context context,String username, String password) ;
-    /**
-     * 这是注册方法
-     *
-     */
     public abstract boolean register(Context context,User user);
 
 }

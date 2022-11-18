@@ -20,9 +20,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button LoginButton; //登录按钮
     private Button  RegisterButton; //注册按钮
     private CheckBox passwordCheck; //显示密码复选框
-//    private EditText new_username;//注册页面的用户名输入框
-//    private EditText new_password;//注册页面的密码输入框
-//    private EditText new_again_password;//注册页面的再次输入密码框
 
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
     private static String[] PERMISSIONS_STORAGE = {
@@ -49,10 +46,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         passwordCheck=(CheckBox)findViewById(R.id.password_checkbook); //创建显示密码复选框对象
     }
 
-    /**
-     * 设置显示密码的点击操作
-     *
-     */
     private void ischeck(CheckBox passwordCheck){
         passwordCheck.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if(isChecked){
@@ -81,23 +74,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
         }
     }
-    /**
-     * 登录
-     */
+
     private  void login()  {
         //获取输入的用户名与密码
         String usernametext=username.getText().toString().trim();
         String passwordtext=password.getText().toString().trim();
-        //System.out.println(usernametext+" "+passwordtext);
         //定义用户名和密码规则
         String usernameregex = "[a-zA-Z]{5}";
-        String passwordregex = "[0-9]{5}";
+        String passwordregex = "[0-9]{6}";
         //校验用户名
         if (!(usernametext.matches(usernameregex))) {
-            // JOptionPane.showMessageDialog(this, "用户名格式不对，请输入5位单词字母)");
-//            new AlertDialog.Builder(MainActivity.this)
-//                    .setTitle("error").setMessage("用户名格式不对，请输入5位单词字母")
-//                    .setPositiveButton("好的",null).show();
             Toast.makeText(MainActivity.this,"用户名格式不对，请输入5位单词字母",Toast.LENGTH_LONG).show();
             //清空用户名框文本，并把输入光标放回到输入框
             this.username.setText("");
@@ -106,13 +92,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         //校验密码
         if (!(passwordtext.matches(passwordregex))) {
-            //JOptionPane.showMessageDialog(this, "密码格式不对，请输入6-12位任意字符)");
-            Toast.makeText(MainActivity.this,"密码格式不正确，请输入6-12位任意字符",Toast.LENGTH_LONG).show();
-//              new AlertDialog.Builder(MainActivity.this)
-//                      .setTitle("error").setMessage("密码格式不正确，请输入6-12位任意字符")
-//                      .setPositiveButton("好的",null).show();
-//
-            //清空用户名框文本,并把输入光标放回到输入框
+            Toast.makeText(MainActivity.this,"密码格式不正确，请输入6位任意数字",Toast.LENGTH_LONG).show();
             this.password.setText("");
             this.username.requestFocus();
             return;

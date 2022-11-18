@@ -1,22 +1,16 @@
 package com.jnu.final_work;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.os.Environment;
-import android.util.Log;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 
-import java.io.FileOutputStream;
+
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
 import java.util.Properties;
 import java.util.Set;
 
@@ -27,8 +21,8 @@ import java.util.Set;
  */
 public class UserDaoImpl implements UserDao {
 
-    private static File sdpath= Environment.getExternalStorageDirectory();
-    private  static File  myfile=new File(sdpath,"panq.txt");
+    private static final File sdpath= Environment.getExternalStorageDirectory();
+    private  static final File  myfile=new File(sdpath,"panq.txt");
 
 
     //创建类的时候就创建文件
@@ -59,7 +53,7 @@ public class UserDaoImpl implements UserDao {
         try{
             //读取文件信息，看用户名与密码是否匹配
             br = new BufferedReader(new FileReader(myfile));
-            String line = null;
+            String line;
             while ((line = br.readLine()) != null) {
                 String[] date = line.split("=");
                 System.out.println("用户名："+date[0]+",密码："+date[1]);

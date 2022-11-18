@@ -9,14 +9,15 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.nio.charset.StandardCharsets;
 
 /**
  * 图书管理系统的功能实现类
  */
 public class BookDaoImpl implements BookDao{
-    private static File sdpath= Environment.getExternalStorageDirectory();
-    private  static File  file=new File(sdpath,"Library.txt");
-    private  static File  file1=new File(sdpath,"temp.txt");
+    private static final File sdpath= Environment.getExternalStorageDirectory();
+    private  static final File  file=new File(sdpath,"Library.txt");
+    private  static final File  file1=new File(sdpath,"temp.txt");
 
     //创建类的时候就创建文件
     static {
@@ -82,7 +83,7 @@ public class BookDaoImpl implements BookDao{
             br=new BufferedReader(new FileReader(file));
             String readLine = "";
             while((readLine = br.readLine()) != null){
-                String list[]=readLine.split("-");
+                String[] list =readLine.split("-");
                 if(readLine.contains(bookName)) {
                     result="ID："+list[0]+"\n书名："+list[1]+"\n价格："+list[2];
                     break;
@@ -115,13 +116,13 @@ public class BookDaoImpl implements BookDao{
         RandomAccessFile raf=null;
         try {
             raf=new RandomAccessFile(file, "rw");
-            String Line=null;
+            String Line;
 
             while((Line=raf.readLine())!=null) {
                 //RandomAccessFile 读写文件时，不管文件中保存的数据编码格式是什么
                 // 使用 RandomAccessFile对象方法的 readLine() 都会将编码格式转换成 ISO-8859-1
                 // 所以 输出显示是还要在进行一次转码
-                String changeLine=new String(Line.getBytes("ISO-8859-1"), "utf-8");
+                String changeLine=new String(Line.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
                 //查找要替换的内容
                 if(changeLine.contains(oldName)) {
                     //得到当前指针的位置，如果不是最后一行，就应该是在oldName\r\n后面;
@@ -144,10 +145,10 @@ public class BookDaoImpl implements BookDao{
                             for(int a=0;a<tempLength;a++) {
                                 sb.append(" ");
                             }
-                            raf.writeBytes(new String(sb.toString().getBytes("utf-8"), "ISO-8859-1"));
+                            raf.writeBytes(new String(sb.toString().getBytes(StandardCharsets.UTF_8), StandardCharsets.ISO_8859_1));
                         }else {
                             //替换的字符串字节数比源字符串大或两者相等
-                            raf.writeBytes(new String(buffer.getBytes("utf-8"), "ISO-8859-1"));
+                            raf.writeBytes(new String(buffer.getBytes(StandardCharsets.UTF_8), StandardCharsets.ISO_8859_1));
 
                         }
                     }else {//不是最后一行
@@ -164,10 +165,10 @@ public class BookDaoImpl implements BookDao{
                                 sb.append(" ");
                             }
 
-                            raf.writeBytes(new String(sb.toString().getBytes("utf-8"), "ISO-8859-1"));
+                            raf.writeBytes(new String(sb.toString().getBytes(StandardCharsets.UTF_8), StandardCharsets.ISO_8859_1));
                         }else {
                             //替换的字符串比源字符串大或两者相等
-                            raf.writeBytes(new String(buffer.getBytes("utf-8"), "ISO-8859-1"));
+                            raf.writeBytes(new String(buffer.getBytes(StandardCharsets.UTF_8), StandardCharsets.ISO_8859_1));
                         }
 
                     }
@@ -202,11 +203,11 @@ public class BookDaoImpl implements BookDao{
         boolean flag=false;
         BufferedWriter bw=null;
         BufferedReader br=null;
-        StringBuilder sb=null;
+        StringBuilder sb;
         try {
             bw=new BufferedWriter(new FileWriter(file1));
             br=new BufferedReader(new FileReader(file));
-            String line=null;
+            String line;
             sb=new StringBuilder();
             while((line=br.readLine())!=null) {
                 //要删除的那一行

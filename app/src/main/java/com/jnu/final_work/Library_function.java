@@ -25,25 +25,25 @@ public class Library_function extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.add_button:
-                Intent intent1=new Intent(Library_function.this,Dialog_Activity.class);
-                startActivity(intent1);
-                break;
-            case R.id.find_button:
-                Intent intent3=new Intent(Library_function.this,find.class);
-                startActivity(intent3);
-                break;
-            case R.id.alter_button:
-                Intent intent2=new Intent(Library_function.this,Alter_activity.class);
-                startActivity(intent2);
-                break;
-            case R.id.cancel_button:
-                Intent intent4=new Intent(Library_function.this,cancel.class);
-                startActivity(intent4);
-                break;
-            default:
-                break;
+        if(v.getId()==R.id.add_button)
+        {
+            Intent intent1=new Intent(Library_function.this,Dialog_Activity.class);
+            startActivity(intent1);
+        }
+        else if(v.getId()==R.id.find_button)
+        {
+            Intent intent3=new Intent(Library_function.this,find.class);
+            startActivity(intent3);
+        }
+        else if(v.getId()==R.id.alter_button)
+        {
+            Intent intent2=new Intent(Library_function.this,Alter_activity.class);
+            startActivity(intent2);
+        }
+        else if(v.getId()==R.id.cancel_button)
+        {
+            Intent intent4=new Intent(Library_function.this,cancel.class);
+            startActivity(intent4);
         }
 
     }

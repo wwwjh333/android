@@ -24,8 +24,6 @@ public class cancel extends AppCompatActivity implements View.OnClickListener{
         init();
         cancel_yes.setOnClickListener(this);
         cancel_no.setOnClickListener(this);
-
-
     }
 
     private void init() {
@@ -38,16 +36,15 @@ public class cancel extends AppCompatActivity implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()){
-            case R.id.cancel_yes_button:
-                getResult();
-                break;
-            case R.id.cancel_no_button:
-                Intent intent=new Intent(cancel.this,Library_function.class);
-                startActivity(intent);
-                break;
+        if(v.getId()==R.id.cancel_yes_button)
+        {
+            getResult();
         }
-
+        else if(v.getId()==R.id.cancel_no_button)
+        {
+            Intent intent=new Intent(cancel.this,Library_function.class);
+            startActivity(intent);
+        }
     }
 
     private void getResult() {

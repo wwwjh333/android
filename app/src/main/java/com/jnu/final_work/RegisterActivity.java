@@ -8,7 +8,6 @@ import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -48,7 +47,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         String passwordtext=new_password.getText().toString().trim();
         //定义用户名和密码规则
         String usernameregex = "[a-zA-Z]{5}";
-        String passwordregex = "[0-9]{5}";
+        String passwordregex = "[0-9]{6}";
         //校验用户名
         if (!(usernametext.matches(usernameregex))) {
             // JOptionPane.showMessageDialog(this, "用户名格式不对，请输入5位单词字母)");
@@ -64,7 +63,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         //校验密码
         if (!(passwordtext.matches(passwordregex))) {
             //JOptionPane.showMessageDialog(this, "密码格式不对，请输入6-12位任意字符)");
-            Toast.makeText(RegisterActivity.this,"密码格式不正确，请输入6-12位任意字符",Toast.LENGTH_LONG).show();
+            Toast.makeText(RegisterActivity.this,"密码格式不正确，请输入6位任意数字",Toast.LENGTH_LONG).show();
             //              new AlertDialog.Builder(MainActivity.this)
             //                      .setTitle("error").setMessage("密码格式不正确，请输入6-12位任意字符")
             //                      .setPositiveButton("好的",null).show();
@@ -76,7 +75,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
         //校验两次输入的密码是否一致
         String again_password=new_again_password.getText().toString().trim();
-        if(!again_password.equals(new_password)){
+        String new_password1 = new_password.getText().toString().trim();
+        if(!again_password.equals(new_password1)){
             Toast.makeText(RegisterActivity.this,"密码不一致",Toast.LENGTH_LONG).show();
         }
         //调用注册功能
@@ -95,16 +95,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.yes_register_button:
-                register();//校验输入的用户名与密码
-                break;
-            case R.id.back_button:
-                Intent intent=new Intent(RegisterActivity.this,MainActivity.class);
-                startActivity(intent);
-                break;
-            default:
-                break;
+        if(v.getId()==R.id.yes_register_button)
+        {
+            register();
+        }
+        else if(v.getId()==R.id.back_button)
+        {
+            Intent intent=new Intent(RegisterActivity.this,MainActivity.class);
+            startActivity(intent);
         }
     }
     /**
@@ -112,18 +110,15 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
      *
      */
     private void ischeck(CheckBox passwordCheck){
-        passwordCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    //显示明文，即设置为可见的密码
-                    new_password.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-                    new_again_password.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-                }else{
-                    //不显示明文，即设置为不可见的密码
-                    new_password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                    new_again_password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                }
+        passwordCheck.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if(isChecked){
+                //显示明文，即设置为可见的密码
+                new_password.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                new_again_password.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+            }else{
+                //不显示明文，即设置为不可见的密码
+                new_password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                new_again_password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
             }
         });
     }

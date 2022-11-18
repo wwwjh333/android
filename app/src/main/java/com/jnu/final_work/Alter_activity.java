@@ -2,6 +2,7 @@ package com.jnu.final_work;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -29,9 +30,6 @@ public class Alter_activity extends AppCompatActivity implements View.OnClickLis
         alter_no_button.setOnClickListener(this);
     }
 
-    /**
-     * 初始化各种控件
-     */
     private void init(){
         alter_name=(EditText)findViewById(R.id.alter_bookname_text);
         alter_new_name=(EditText)findViewById(R.id.new_alter_bookname_text);
@@ -44,15 +42,9 @@ public class Alter_activity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()){
-            case R.id.alter_yes_button:
-                getResult();
-                break;
-            case R.id.alter_no_button:
-
-                break;
-            default:
-                break;
+        if(v.getId()==R.id.alter_yes_button)
+        {
+            getResult();
         }
     }
 
