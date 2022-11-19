@@ -12,6 +12,7 @@ public class Dialog_Activity extends AppCompatActivity implements View.OnClickLi
     private EditText name;//书名文本框
     private EditText ID;//书的编号文本框
     private EditText price;//价格文本框
+    private EditText author;//作者
     private EditText result;//操作结果文本框
     private Button yes_button;//确定文本框
     private Button no_button;//取消文本框
@@ -35,6 +36,7 @@ public class Dialog_Activity extends AppCompatActivity implements View.OnClickLi
         name=(EditText)findViewById(R.id.add_bookname_text);
         ID=(EditText)findViewById(R.id.add_bookID_text);
         price=(EditText)findViewById(R.id.add_bookPrice_text);
+        author=(EditText)findViewById(R.id.add_bookAuthor_text);
         yes_button=(Button)findViewById(R.id.add_yes_button);
         no_button=(Button)findViewById(R.id.add_no_button);
     }
@@ -61,7 +63,8 @@ public class Dialog_Activity extends AppCompatActivity implements View.OnClickLi
         String bookname=this.name.getText().toString().trim();//获取用户键盘录入的书名
         String bookid=this.ID.getText().toString().trim();//获取用户键盘录入编号
         String bookprice=this.price.getText().toString().trim();//获取用户键盘录入的价格
-        book=new Book(bookid,bookname,bookprice);//将书籍信息放到Book类中
+        String bookauthor=this.author.getText().toString().trim();
+        book=new Book(bookid,bookname,bookprice,bookauthor);//将书籍信息放到Book类中
         //调用书籍添加功能
         impl.addBook(book);
     }

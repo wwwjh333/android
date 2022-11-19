@@ -48,10 +48,10 @@ public class BookDaoImpl implements BookDao{
             if((line=br.readLine())!=null){
                 //如果文件第一行不是空，即文件已经有内容
                 bw.write("\r\n");//因为文件最后一行的末尾没有回车换行符，如果不先加回车换行符，就会直接在最后一行写，不会新增一行
-                bw.write(book.getID()+"-"+book.getName()+"-"+book.getPrice());
+                bw.write(book.getID()+"-"+book.getName()+"-"+book.getAuthor()+"-"+book.getPrice());
                 bw.flush();
             }else{//如果文件第一行为空，即文件没有内容
-                bw.write(book.getID()+"-"+book.getName()+"-"+book.getPrice());
+                bw.write(book.getID()+"-"+book.getName()+"-"+book.getAuthor()+"-"+book.getPrice());
                 bw.flush();
             }
 
@@ -85,7 +85,7 @@ public class BookDaoImpl implements BookDao{
             while((readLine = br.readLine()) != null){
                 String[] list =readLine.split("-");
                 if(readLine.contains(bookName)) {
-                    result="ID："+list[0]+"\n书名："+list[1]+"\n价格："+list[2];
+                    result="ID："+list[0]+"\n书名："+list[1]+"\n作者："+list[2]+"\n价格: "+list[3];
                     break;
                 }
             }

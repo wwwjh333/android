@@ -4,15 +4,16 @@ public class Book {
     private String ID;//书的编号
     private String Name;//书名
     private String price;//书的价格
-
+    private String autohr;
 
     public  Book() {
         super();
     }
-    public Book(String iD, String name, String price) {
+    public Book(String iD, String name, String price, String author) {
         super();
         ID = iD;
         Name = name;
+        autohr = author;
         this.price = price;
     }
 
@@ -33,6 +34,12 @@ public class Book {
     }
     public void setPrice(String price) {
         this.price = price;
+    }
+    public String getAuthor(){
+        return autohr;
+    }
+    public void setAutohr(String author){
+        this.autohr = author;
     }
 
     @Override
@@ -59,10 +66,15 @@ public class Book {
                 return false;
         } else if (!price.equals(other.price))
             return false;
+        if (autohr == null) {
+            if (other.autohr != null)
+                return false;
+        } else if (!autohr.equals(other.autohr))
+            return false;
         return true;
     }
     @Override
     public String toString() {
-        return "Book [ID=" + ID + ", Name=" + Name + ", price=" + price + "]";
+        return "Book [ID=" + ID + ", Name=" + Name + ", price=" + price + ", author=" + autohr +"]";
     }
 }
