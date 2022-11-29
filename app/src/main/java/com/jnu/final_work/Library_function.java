@@ -12,6 +12,7 @@ public class Library_function extends AppCompatActivity implements View.OnClickL
     private Button findButton;//查询书籍按钮
     private Button alterButton;//修改书籍信息按钮
     private Button cancelButton;//删除书籍按钮
+    private Button fanhuiButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +22,7 @@ public class Library_function extends AppCompatActivity implements View.OnClickL
         alterButton.setOnClickListener(this);
         findButton.setOnClickListener(this);
         cancelButton.setOnClickListener(this);
+        fanhuiButton.setOnClickListener(this);
     }
 
     @Override
@@ -45,6 +47,11 @@ public class Library_function extends AppCompatActivity implements View.OnClickL
             Intent intent4=new Intent(Library_function.this,cancel.class);
             startActivity(intent4);
         }
+        else if(v.getId()==R.id.fanhui_button)
+        {
+            Intent intent5=new Intent(Library_function.this,BookList.class);
+            startActivity(intent5);
+        }
 
     }
     private void init(){
@@ -52,5 +59,6 @@ public class Library_function extends AppCompatActivity implements View.OnClickL
         findButton=(Button)findViewById(R.id.find_button);
         alterButton=(Button)findViewById(R.id.alter_button);
         cancelButton=(Button)findViewById(R.id.cancel_button);
+        fanhuiButton=(Button)findViewById((R.id.fanhui_button));
     }
 }

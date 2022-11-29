@@ -16,7 +16,6 @@ public class Book {
         autohr = author;
         this.price = price;
     }
-
     public String getID() {
         return ID;
     }

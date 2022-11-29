@@ -40,7 +40,6 @@ public class BookDaoImpl implements BookDao{
     public void addBook(Book book) {
         BufferedWriter bw=null;
         BufferedReader br=null;
-
         try {
             bw=new BufferedWriter(new FileWriter(file,true));//true代表将数据写入文件末尾处，而不是文件开始处
             br=new BufferedReader(new FileReader(file));
@@ -79,7 +78,6 @@ public class BookDaoImpl implements BookDao{
         BufferedReader br=null;
         String result=null;
         try {
-
             br=new BufferedReader(new FileReader(file));
             String readLine = "";
             while((readLine = br.readLine()) != null){

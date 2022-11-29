@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }else{
             //登录成功
             Toast.makeText(MainActivity.this,"登录成功",Toast.LENGTH_LONG).show();
-            Intent intent=new Intent(MainActivity.this,Library_function.class);
+            Intent intent=new Intent(MainActivity.this,BookList.class);
             startActivity(intent);
 
         }

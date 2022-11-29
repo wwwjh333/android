@@ -27,6 +27,7 @@
             android:theme="@style/Theme.AppCompat.Dialog" />
         <activity android:name=".Library_function" />
         <activity android:name=".RegisterActivity" />
+        <activity android:name=".BookList" />
         <activity android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
