@@ -15,5 +15,13 @@ public class Book {
     public void setCoverResourceId(int id){
         this.CoverResourceId = id;
     }
+    public String getTitle()
+    {
+        return title;
+    }
+
+    public int getCoverResourceId() {
+        return CoverResourceId;
+    }
 }
 

@@ -3,17 +3,29 @@ package com.jnu.exp7;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +33,11 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     RecyclerView mRecyclerView;
     MyAdapter mMyAdapter;
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private static String[] PERMISSIONS_STORAGE = {
+            "android.permission.READ_EXTERNAL_STORAGE",
+            "android.permission.WRITE_EXTERNAL_STORAGE" };
+    private  static final File  file=new File(Environment.getExternalStorageDirectory().getPath() + "/Book.txt");
     Book book1 = new Book("软件项目管理案例教程（第4版）",R.drawable.book_2);
     Book book2 = new Book("创新工程实践",R.drawable.book_no_name);
     Book book3 = new Book("信息安全数学基础（第2版）",R.drawable.book_1);
@@ -30,11 +47,73 @@ public class MainActivity extends AppCompatActivity {
         add(book3);
     }};
 
-
+    static {
+        try {
+            if(file.exists())
+                System.out.println("文件已存在");
+            else{
+                file.createNewFile();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        BufferedWriter bw=null;
+        BufferedReader br=null;
+//        try {
+//            bw=new BufferedWriter(new FileWriter(file,true));//true代表将数据写入文件末尾处，而不是文件开始处
+//            System.out.println("111");
+//            bw.write("\r\n");//因为文件最后一行的末尾没有回车换行符，如果不先加回车换行符，就会直接在最后一行写，不会新增一行
+//
+//            bw.write(book2.getTitle()+"-"+book2.getCoverResourceId());
+//            bw.flush();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }finally{
+//            if(bw!=null) {
+//                try {
+//                    bw.close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+
+        try {
+            br=new BufferedReader(new FileReader(file));
+            String readLine = "";
+            int count =0;
+            while((readLine = br.readLine()) != null){
+                String[] list =readLine.split("-");
+                if(list[0].equals(""))
+                {
+                    continue;
+                }
+                System.out.println(list[0]);
+                int x =Integer.parseInt(list[1]);
+                Book book=new Book(list[0],x);
+                mBookList.add(book);
+                count++;
+                if(count==10)
+                {
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally{
+            if(br!=null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
         setContentView(R.layout.activity_main);
         mRecyclerView = findViewById(R.id.recyclerview);
         registerForContextMenu(mRecyclerView);
@@ -57,6 +136,8 @@ public class MainActivity extends AppCompatActivity {
             mRecyclerView.setLayoutManager(layoutManager);
        }
         else if(item.getItemId()==1) {
+            Book books = mBookList.get(position);
+            String oldName = books.getTitle();
             Intent intent = new Intent(MainActivity.this, com.jnu.exp7.EditBookActivity.class);
             startActivity(intent);
         }
@@ -132,8 +213,6 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
-
-
 
 }
 
