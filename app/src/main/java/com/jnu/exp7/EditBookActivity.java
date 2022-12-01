@@ -30,12 +30,12 @@ public class EditBookActivity  extends AppCompatActivity implements View.OnClick
         if(v.getId()==R.id.yes_button)
         {
             String bookName = BookName.getText().toString().trim();
-            Intent intent=new Intent(EditBookActivity.this,MainActivity.class);
+            Intent intent=new Intent(EditBookActivity.this, BookList.class);
             startActivity(intent);
         }
         else if(v.getId()==R.id.no_button)
         {
-            Intent intent=new Intent(EditBookActivity.this,MainActivity.class);
+            Intent intent=new Intent(EditBookActivity.this, BookList.class);
             startActivity(intent);
         }
     }
