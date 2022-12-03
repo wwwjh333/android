@@ -7,12 +7,21 @@ import androidx.viewpager2.widget.ViewPager2;
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager2 mViewPage;
     private String[] tabTitles;//tab的标题
     private List<Fragment> mDatas = new ArrayList<>();//ViewPage2的Fragment容器
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,4 +81,5 @@ public class MainActivity extends AppCompatActivity {
         mDatas.add(frgTwo);
         mDatas.add(frgThree);
     }
+
 }
