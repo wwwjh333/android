@@ -1,49 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main_bg"
-    android:gravity="right"
-    android:orientation="vertical">
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    tools:context="com.zhihuishu.innovationcourse.MainActivity">
 
-    <Button
-        android:id="@+id/bt_start"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_marginRight="160dp"
-        android:layout_marginTop="55dp"
-        android:background="@null" />
-
-    <Button
-        android:id="@+id/bt_continue"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_marginRight="165dp"
-        android:layout_marginTop="20dp"
-        android:background="@null" />
-
-    <Button
-        android:id="@+id/bt_setting"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_marginRight="165dp"
-        android:layout_marginTop="20dp"
-        android:background="@null" />
-
-    <Button
-        android:id="@+id/bt_explain"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_marginRight="165dp"
-        android:layout_marginTop="20dp"
-        android:background="@null" />
-
-    <Button
-        android:id="@+id/bt_exit"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_marginRight="165dp"
-        android:layout_marginTop="20dp"
-        android:background="@null" />
-
-</LinearLayout>
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/teacher_listView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+</RelativeLayout>
