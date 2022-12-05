@@ -1,26 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    android:background="@drawable/main_bg"
+    android:gravity="right"
     android:orientation="vertical">
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:tabBackground="@color/purple_200"
-        app:tabIndicatorColor="@color/black"
-        app:tabIndicatorHeight="2dp"
-        app:tabSelectedTextColor="@color/black"
-        app:tabTextColor="@color/white" />
+    <Button
+        android:id="@+id/bt_start"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginRight="160dp"
+        android:layout_marginTop="55dp"
+        android:background="@null" />
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/view_page"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintTop_toBottomOf="@+id/tab_layout" />
+    <Button
+        android:id="@+id/bt_continue"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginRight="165dp"
+        android:layout_marginTop="20dp"
+        android:background="@null" />
+
+    <Button
+        android:id="@+id/bt_setting"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginRight="165dp"
+        android:layout_marginTop="20dp"
+        android:background="@null" />
+
+    <Button
+        android:id="@+id/bt_explain"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginRight="165dp"
+        android:layout_marginTop="20dp"
+        android:background="@null" />
+
+    <Button
+        android:id="@+id/bt_exit"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginRight="165dp"
+        android:layout_marginTop="20dp"
+        android:background="@null" />
 
 </LinearLayout>
